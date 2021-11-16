@@ -1,6 +1,6 @@
 async function upload_and_classify(image) {
     console.log("Upload and classify called!");
-    const data = await fetch('http://127.0.0.1:5000/api/classify', {
+    const data = await fetch('https://marcus-ic.herokuapp.com/api/classify', {
         method: 'POST',
         body: JSON.stringify({"image_b64": image}),
         headers: {
