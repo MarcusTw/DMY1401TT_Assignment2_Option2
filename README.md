@@ -1,5 +1,7 @@
 # DMY1401TT_Assignment2_Option2
 
+### Done by Marcus Tan Wei, A0149980N
+
 My classifier Web app hosted at [link](https://flaskapp-m4jbzqtwiq-uc.a.run.app/)
 ## Task Description
 The task for this option is to deploy an object detection tool or service using existing pre-trained models.
@@ -69,5 +71,5 @@ In this task, I have created a Web Service using Flask that allows user to input
   - Click on Submit and wait for detector the classify! After it is done, you should be able to see the picture with drawn boxes to classify them.
 
 
-Note: API Calls to [classification API endpoint]([Link](https://flaskapp-m4jbzqtwiq-uc.a.run.app/api/classify) is done through passing of JSON.
+Note: API Calls to [classification API endpoint](https://flaskapp-m4jbzqtwiq-uc.a.run.app/api/classify) is done through passing of JSON.
 
