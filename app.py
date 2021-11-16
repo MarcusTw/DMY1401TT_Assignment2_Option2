@@ -76,7 +76,7 @@ from PIL import ImageOps
 import time
 
 # For Flask app
-from flask import Flask, flash, request, redirect, url_for, render_template, jsonify
+from flask import Flask, flash, request, redirect, url_for, render_template, jsonify, send_from_directory
 import os
 from werkzeug.utils import secure_filename
 import base64
@@ -283,7 +283,13 @@ def get_default_img():
     with open('img.txt') as f:
         lines = f.readlines()
         return lines[0]
- 
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+      
+
 @app.route('/')
 def home():
     return render_template('index.html')
