@@ -54,17 +54,14 @@ In this task, I have created a Web Service using Flask that allows user to input
 1. Client and server code for Service: [Github Repo](https://github.com/MarcusTw/DMY1401TT_Assignment2_Option2/)
 2. Client Website host: [Link](https://flaskapp-m4jbzqtwiq-uc.a.run.app/)
 3. Demonstration: [Link](https://youtu.be/MVFFN2oeSU0)
-4. Inference time: 
+4. Inference time (in order): 
   - /assets/images/sample-images/sample-images/sample1.jpeg : 42.18635702133179s
   - /assets/images/sample-images/sample-images/sample2.jpeg : 14.233638286590576s
   - /assets/images/sample-images/sample-images/sample3.jpeg : 15.187188625335693s
-
-   Ran again
   - /assets/images/sample-images/sample-images/sample1.jpeg : 14.865619421005249s
   - /assets/images/sample-images/sample-images/sample2.jpeg : 14.88602900505066s
-  ![Screenshot](https://github.com/MarcusTw/DMY1401TT_Assignment2_Option2/assets/images/inference-timings.png)
-
-   The first image would take a longer period of inference time perhaps because of creating and writing to metadata file.
+  ![Screenshot](https://raw.githubusercontent.com/MarcusTw/DMY1401TT_Assignment2_Option2/main/assets/images/inference-timings.png)
+  - Explanation: The first image would take a longer period of inference time perhaps because of creating and writing to metadata file.
 5. Simple usage guide:
   - Go to [Link](https://flaskapp-m4jbzqtwiq-uc.a.run.app/)
   - Click on upload an image
