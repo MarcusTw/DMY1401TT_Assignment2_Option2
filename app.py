@@ -24,6 +24,7 @@ import time
 
 # For Flask app
 from flask import Flask, flash, request, redirect, url_for, render_template, jsonify, send_from_directory
+from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import base64
@@ -161,6 +162,7 @@ def detect_img(image_url):
 
 
 app = Flask(__name__)
+CORS(app)
  
 UPLOAD_FOLDER = 'static/uploads/'
 CLASSIFICATION_FOLDER = 'static/classifications'
