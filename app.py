@@ -80,6 +80,7 @@ from flask import Flask, flash, request, redirect, url_for, render_template, jso
 import os
 from werkzeug.utils import secure_filename
 import base64
+from io import BytesIO
 
 # # Print Tensorflow version
 # print(tf.__version__)
@@ -318,29 +319,32 @@ def upload_image():
 
 def get_classification(image_b64):
     # TODO: FIX HERE
-    img = tf.io.decode_base64(str.encode(image_b64));
-    print("reached here...")
-    converted_img  = tf.image.convert_image_dtype(img, tf.float32)[tf.newaxis, ...]
+    base64_img_bytes = image_b64.encode('utf-8')
+    path = os.path.join(app.config['UPLOAD_FOLDER'], 'decoded_img.jpeg')
+    with open(path, 'wb') as file_to_save:
+        decoded_image_data = base64.decodebytes(base64_img_bytes)
+        file_to_save.write(decoded_image_data)
+    img = load_img(path)
+    converted_img = tf.image.convert_image_dtype(img, tf.float32)[tf.newaxis, ...]
     start_time = time.time()
     result = detector(converted_img)
     end_time = time.time()
-
     result = {key:value.numpy() for key,value in result.items()}
-
+    
     print("Found %d objects." % len(result["detection_scores"]))
     print("Inference time: ", end_time-start_time)
-
+    
     image_with_boxes = draw_boxes(
         img.numpy(), result["detection_boxes"],
         result["detection_class_entities"], result["detection_scores"])
-    # w, h = 512, 512
-    # data = np.zeros((h, w, 3), dtype=np.uint8)
-    # data[0:256, 0:256] = [255, 0, 0] # red patch in upper left
-    img = Image.fromarray(image_with_boxes, 'RGB')
-    encoded_string = base64.b64encode(img.read())
-    encoded_string = encoded_string.decode('utf-8')
-    return encoded_string
     
+    # Convert to base64 to be sent
+    img = Image.fromarray(image_with_boxes, 'RGB')
+    buffered = BytesIO()
+    img.save(buffered, format="jpeg")
+    encoded_string = base64.b64encode(buffered.getvalue())
+    encoded_string = encoded_string.decode('utf-8')
+    return encoded_string 
 
 
 @app.route('/api/classify', methods=['POST'])
