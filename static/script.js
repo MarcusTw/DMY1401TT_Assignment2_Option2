@@ -1,6 +1,9 @@
+const production_url = 'https://flaskapp-m4jbzqtwiq-uc.a.run.app/api/classify'
+const development_url = 'http://127.0.0.1:5000/api/classify'
+
 async function upload_and_classify(image) {
     console.log("Upload and classify called!");
-    const data = await fetch('https://flaskapp-m4jbzqtwiq-uc.a.run.app/api/classify', {
+    const data = await fetch(development_url, {
         method: 'POST',
         body: JSON.stringify({"image_b64": image}),
         headers: {
