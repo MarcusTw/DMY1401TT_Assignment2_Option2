@@ -180,10 +180,10 @@ def get_default_img():
         lines = f.readlines()
         return lines[0]
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory(os.path.join(app.root_path, 'static'),
+#                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def home():
@@ -261,4 +261,4 @@ def classify():
     return jsonify({'classified_b64': classified_img})
  
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0:5000')
+    app.run()
